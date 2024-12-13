@@ -223,4 +223,19 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  document.addEventListener('DOMContentLoaded', function () {
+    const consentBanner = document.getElementById('cookie-consent');
+    const acceptButton = document.getElementById('accept-cookies');
+
+    // Verificar se o usuário já aceitou os cookies
+    if (!localStorage.getItem('cookiesAccepted')) {
+      consentBanner.style.display = 'block';
+    }
+
+    // Ao aceitar, armazena a decisão e esconde o banner
+    acceptButton.addEventListener('click', function () {
+      localStorage.setItem('cookiesAccepted', 'true');
+      consentBanner.style.display = 'none';
+    });
+  });
 })();
